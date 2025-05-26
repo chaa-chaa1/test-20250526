@@ -1,9 +1,17 @@
 import streamlit as st
 import time
 
-st.write("차태현")
+st.header("차태현")
 
-with st.spinner("잠시만 기다려 주세요..."):
-    time.sleep(5)  # 실제 작업 시뮬레이션
+with st.spinner("전체 작업 진행 중..."):
+    progress = st.progress(0)
+    status_text = st.empty()  # 텍스트 덮어쓰기 용 공간 확보
 
-st.success("데이터 로딩 완료!")
+    for i in range(5):
+        status_text.write(f"🔧 Step {i+1}/5: 데이터 준비 중...")
+        time.sleep(1)
+        progress.progress((i + 1) * 20)
+
+st.success("처리가 모두 끝났습니다!")
+
+
